@@ -5,19 +5,38 @@ require_once 'mysql/Conexion.php';
 
 class Consultas
 {
+   private $conexion;
 
-   public function leerRegistros()
-   {
+   public function __construct(){
       $conexion = new Conexion();
-      $conexion = $conexion->getConexion();
-      $consulta = "SELECT * FROM contactos ORDER BY id";
-      $resultado = $conexion->query($consulta);
+      $this->conexion = $conexion->getConexion();
+   }
+   //leo todos los registros
+   public function leerRegistros($pagina)
+   {
+      $numElementos = 8;
+      $consulta = "SELECT * FROM contactos ORDER BY id LIMIT " . (($pagina - 1) * $numElementos)  . "," . $numElementos;
+      $resultado = $this->conexion->query($consulta);
 
       if($resultado){
          return $resultado;
       }else{
          return false;
       }
+   }
+
+   //Este metodo me va servir para saber cuantos registros hay en la tabla
+   public function contarRegistros()
+   {
+      $consulta = "SELECT count(*) FROM contactos";
+      $resultado = $this->conexion->query($consulta);
+
+      if($resultado){
+         return $resultado;
+      }else{
+         return false;
+      }
+
    }
 }
 

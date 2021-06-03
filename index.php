@@ -1,8 +1,11 @@
 <?php
 require_once 'auxiliares/Consultas.php';
 $objeto = new Consultas();
-$resultado = $objeto->leerRegistros();
+$resultado = $objeto->contarRegistros();
+$maximoElementos = $resultado->fetch_array();
 
+$pagina = (isset($_GET['pag'])) ? $_GET['pag'] : 1;
+$resultado = $objeto->leerRegistros($pagina);
 ?>
 
 <!DOCTYPE html>
@@ -49,6 +52,31 @@ $resultado = $objeto->leerRegistros();
                <?php endwhile; ?>
             </tbody>
          </table>
+         <div class="d-flex justify-content-center">
+            <ul class="pagination">
+               <!-- Si existe el parametro pag -->
+               <?php if(isset($_GET['pag'])): ?>
+                  <!-- Si pag es mayor que 1, ponemos un enlace al anterior -->
+                  <?php if($_GET['pag'] > 1):  ?>
+                     <li class="page-item"><a class="page-link" href="index.php?pag=<?php echo $_GET['pag'] - 1; ?>">Anterior</a></li>
+                  <?php else: ?>
+                     <li disabled class="page-item"><a class="page-link" href="#">Anterior</a></li>
+                  <?php endif; ?>
+               <?php else: ?>
+                  <li disabled class="page-item"><a class="page-link" href="#">Anterior</a></li>       <!-- Sino deshabilito el botón -->
+               <?php endif;?>
+
+               <?php if(isset($_GET['pag'])): ?>
+                  <?php if( ($pagina*8) < $maximoElementos[0]): ?>
+                     <li class="page-item"><a class="page-link" href="index.php?pag=<?php echo $_GET['pag'] + 1;?>">Siguiente</a></li>
+                  <?php else: ?>
+                     <li disabled class="page-item"><a disabled class="page-link" href="">Siguiente</a></li>
+                  <?php endif; ?>
+               <?php else: ?>
+                  <li disabled class="page-item"><a disabled class="page-link" href="index.php?pag=2">Siguiente</a></li>
+               <?php endif; ?>
+            </ul>
+         </div>
       </div>
    </body>
 </html>
