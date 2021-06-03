@@ -10,6 +10,7 @@ $resultado = $objeto->leerRegistros();
    <head>
       <meta charset="utf-8">
       <title>CRUD BÁSICO</title>
+      <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css">
       <link rel="preconnect" href="https://fonts.gstatic.com">
       <link href="https://fonts.googleapis.com/css2?family=Mate+SC&display=swap" rel="stylesheet">
       <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css">
@@ -29,7 +30,8 @@ $resultado = $objeto->leerRegistros();
                   <th scope="col">telefono</th>
                   <th scope="col">correo</th>
                   <th scope="col">edad</th>
-                  <th scope="col" colspan="4">Operacion</th>
+                  <th scope="col">Operacion</th>
+                  <th scope="col"><a href="#"><i class="fas fa-address-card"></i></a></th>
                </tr>
             </thead>
             <tbody>
