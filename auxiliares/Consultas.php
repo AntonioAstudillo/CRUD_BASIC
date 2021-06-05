@@ -38,6 +38,18 @@ class Consultas
       }
 
    }
+
+   public function eliminarRegistro($id){
+      $consulta = "DELETE FROM contactos WHERE id = '$id';";
+
+      $resultado = $this->conexion->query($consulta);
+
+      if($resultado && $this->conexion->affected_rows != 0){
+         return true;
+      }else{
+         return false;
+      }
+   }
 }
 
 

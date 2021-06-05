@@ -46,7 +46,7 @@ $resultado = $objeto->leerRegistros($pagina);
                      <td><?php echo $registro['telefono']; ?></td>
                      <td><?php echo $registro['correo']; ?></td>
                      <td><?php echo $registro['edad']; ?></td>
-                     <td><a class="btn btn-primary" href="actualizar.php?id=<?php echo $registro['id']; ?>">Actualizar</a> </td>
+                     <td><a class="btn btn-primary" href="actualizarVista.php?id=<?php echo $registro['id']; ?>">Actualizar</a> </td>
                      <td><a class="btn btn-danger" href="eliminar.php?id=<?php echo $registro['id']; ?>">Eliminar</a> </td>
                   </tr>
                <?php endwhile; ?>
@@ -70,10 +70,10 @@ $resultado = $objeto->leerRegistros($pagina);
                   <?php if( ($pagina*8) < $maximoElementos[0]): ?>
                      <li class="page-item"><a class="page-link" href="index.php?pag=<?php echo $_GET['pag'] + 1;?>">Siguiente</a></li>
                   <?php else: ?>
-                     <li disabled class="page-item"><a disabled class="page-link" href="">Siguiente</a></li>
+                     <li  class="page-item"><a disabled="true" class="page-link" href="">Siguiente</a></li>
                   <?php endif; ?>
                <?php else: ?>
-                  <li disabled class="page-item"><a disabled class="page-link" href="index.php?pag=2">Siguiente</a></li>
+                  <li class="page-item"><a disabled="true" class="page-link" href="index.php?pag=2">Siguiente</a></li>
                <?php endif; ?>
             </ul>
          </div>
