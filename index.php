@@ -34,7 +34,7 @@ $resultado = $objeto->leerRegistros($pagina);
                   <th scope="col">correo</th>
                   <th scope="col">edad</th>
                   <th scope="col">Operacion</th>
-                  <th scope="col"><a href="#"><i class="fas fa-address-card"></i></a></th>
+                  <th scope="col"><a href="agregarVista.php"><i class="fas fa-address-card"></i></a></th>
                </tr>
             </thead>
             <tbody>

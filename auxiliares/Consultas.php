@@ -39,9 +39,44 @@ class Consultas
 
    }
 
+   public function actualizarRegistro($id , $nombre , $apellido , $telefono , $edad , $correo){
+
+      $consulta = "UPDATE contactos SET nombre = '$nombre' , apellido = '$apellido', telefono  = '$telefono' , edad = '$edad' , correo = '$correo' WHERE id = '$id';";
+
+      $resultado = $this->conexion->query($consulta);
+
+      if($resultado && $this->conexion->affected_rows != 0){
+         return true;
+      }else{
+         return false;
+      }
+   }
+
+   public function obtenerRegistro($id){
+      $consulta = "SELECT * FROM contactos WHERE id = '$id';";
+      $resultado = $this->conexion->query($consulta);
+
+      if($resultado){
+         return $resultado;
+      }else{
+         return false;
+      }
+   }
+
    public function eliminarRegistro($id){
       $consulta = "DELETE FROM contactos WHERE id = '$id';";
 
+      $resultado = $this->conexion->query($consulta);
+
+      if($resultado && $this->conexion->affected_rows != 0){
+         return true;
+      }else{
+         return false;
+      }
+   }
+
+   public function insertarRegistro($nombre, $apellido , $edad , $correo , $telefono , $sistema){
+      $consulta = "INSERT INTO contactos VALUES(null,'$nombre','$apellido','$telefono','$correo','$edad','$sistema');";
       $resultado = $this->conexion->query($consulta);
 
       if($resultado && $this->conexion->affected_rows != 0){
